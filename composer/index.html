@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="nl">
 
 	<head>
 		<meta charset="utf-8">
@@ -333,6 +333,49 @@ Installing dependencies (including require-dev)
 
                     </code></pre>
                 </section>
+            
+            <section>
+                <img src="img/laravelfolders.PNG" alt=""/>
+            </section>
+
+            <section>
+                <h1>Autoloading</h1>
+                <div class="fragment">
+                    <h3>Vroeger:</h3>
+                    <p>Elk bestand waar we librarie nodig hebben</p>
+                    </code></pre>
+                    <pre class="fragment"><code  data-trim>
+require_once("libs/facebook.php");
+
+$config = array(
+    //config settings
+);
+
+$facebook = new Facebook($config);
+                    </code></pre>
+                </div>
+            </section>
+
+            <section>
+                <h3>Met composer:</h3>
+                <pre class="fragment"><code  data-trim>
+{
+    "require": {
+        "facebook/php-sdk" : "~3.2"
+    }
+}
+                </code></pre>
+                <pre class="fragment"><code  data-trim>
+                    $ composer install
+                </code></pre>
+                <pre class="fragment"><code  data-trim>
+$config = array(
+    //config settings
+);
+
+$facebook = new Facebook($config);
+                </code></pre>
+            </section>
 
 
 
