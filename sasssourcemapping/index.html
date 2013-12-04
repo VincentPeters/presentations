@@ -1,0 +1,3175 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Getting grip on Sass</h1>
+					<h3>How to tame Sass in Chrome</h3>
+					<p>
+						<small>Created by Vincent Peters</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Probleem met Sass en grote projecten?</h2>
+					<img src="img/Screenshot-2013-10-31-14.38.28.png" alt="" class="fragment">
+				</section>
+				<section>
+					<pre class="stretch"><code  data-trim>
+@charset "UTF-8";
+/*
+                                             ;8@@@@@@@@@C        :0@@@@@@@@@@81                   1880;                     
+                   L@@@C..i8              f@@@@@@@@@@@@@@@@@@; 0@@@@@@@@@@@@@@@@@@@L             8   :@@@@:                  
+                 i@@@8                .8@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0                t@@@@                 
+                :@@@@              ,@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@C              @@@@@                
+                @@@@@           t@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@t           @@@@@:               
+                @@@@@@.     t@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@8:     C@@@@@@:               
+                L@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                
+                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@; 1@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                 
+                  8@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@G       8@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0                  
+                    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@8,             :@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@0                    
+                       8@@@@@@@@@@@@@@@@@@@@@@@@@G.                       ,0@@@@@@@@@@@@@@@@@@@@@@@@@f                       
+                            .f8@@@@@@@@@L;                                         ,tC8@@@@@8Gt.                                                                                                                                                                                                                                         
+*/
+/*
+|--------------------------------------------------------------------------
+| DEFAULTS AND MISC
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| Colour setters
+|--------------------------------------------------------------------------
+*/
+.lightgray {
+  color: #b2b2b2;
+}
+
+.bg-white {
+  background: #fff;
+}
+
+.bg-darkgreen {
+  background: #418a97;
+}
+
+.bg-orange {
+  background: #e6a300;
+}
+
+.bg-red {
+  background: #c8513d;
+}
+
+.bg-gray {
+  background: #c8c8c8;
+}
+
+/*
+|--------------------------------------------------------------------------
+| css functions
+|--------------------------------------------------------------------------
+*/
+html {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  white-space: initial;
+}
+
+body {
+  background: #f0f0f0;
+  overflow-y: hidden;
+  font-family: "myriad-pro",sans-serif;
+  letter-spacing: 0.04em;
+  color: #262626;
+  z-index: 0;
+  /* HACKYTY HACK HACK */
+  height: 100%;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+button {
+  border: none;
+  font-size: 16px;
+  text-align: left;
+}
+
+input, textarea {
+  font-family: "proxima-nova",sans-serif;
+  font-weight: 300;
+  padding: 0.47em 0.5em;
+  border: 1px solid #dfdfdf;
+  margin-bottom: 0.50em;
+  font-size: 0.8em;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border: 1px solid #418a97;
+}
+
+.full-width {
+  width: 94%;
+}
+
+.default-cursor {
+  cursor: initial !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+hr {
+  color: #dfdfdf;
+  background-color: #dfdfdf;
+  height: 1px;
+  border: 0;
+}
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-size: 86%;
+}
+
+.font-default {
+  font-family: "myriad-pro",sans-serif;
+}
+
+.font-nova {
+  font-family: "proxima-nova",sans-serif;
+}
+
+.pointer-off {
+  cursor: default;
+}
+
+.clear {
+  clear: both;
+}
+
+.overlay-full {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  filter: alpha(opacity=40);
+  opacity: 0.4;
+  display: none;
+  z-index: 2;
+}
+
+.close {
+  position: absolute;
+  top: 0.3em;
+  right: 0.3em;
+  cursor: pointer;
+}
+
+.overflow {
+  overflow: initial !important;
+}
+
+::-webkit-input-placeholder {
+  color: #ccdde0;
+}
+
+:-moz-placeholder {
+  color: #ccdde0;
+}
+
+::-moz-placeholder {
+  color: #ccdde0;
+}
+
+:-ms-input-placeholder {
+  color: #ccdde0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "proxima-nova",sans-serif;
+}
+
+.center-text {
+  position: absolute;
+  top: 18%;
+  left: 10%;
+  -webkit-transition: left 0.2s ease-in-out;
+  -moz-transition: left 0.2s ease-in-out;
+  -ms-transition: left 0.2s ease-in-out;
+  -o-transition: left 0.2s ease-in-out;
+  transition: left 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+}
+
+#popup {
+  display: none;
+  opacity: 0.4;
+  z-index: 500;
+  position: fixed;
+  width: 40%;
+  height: 30px;
+  background-color: black;
+  top: 140px;
+  left: 30%;
+  color: white;
+  text-align: center;
+}
+#popup h2 {
+  color: white;
+  font-size: 1em;
+  opacity: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| BASIC MQ's
+|--------------------------------------------------------------------------
+*/
+@media all and (max-width: 950px) {
+  .backdrop {
+    left: -7.3em !important;
+  }
+
+  .subnav {
+    left: 19.8em !important;
+  }
+
+  nav.main ul {
+    left: 1em;
+  }
+
+  nav.main #menu-loggedin {
+    left: 21em;
+  }
+}
+@media all and (max-width: 1100px) and (min-width: 951px) {
+  .backdrop {
+    left: -4.3em !important;
+  }
+
+  .subnav {
+    left: 22.8em !important;
+  }
+}
+@media all and (max-width: 1450px) {
+  /* nav.filters{display: none !important;} */
+}
+@media all and (max-height: 649px) {
+  body {
+    font-size: 100%;
+  }
+}
+@media all and (min-height: 650px) and (max-height: 679px) {
+  body {
+    font-size: 110%;
+  }
+}
+@media all and (min-height: 680px) and (max-height: 759px) {
+  body {
+    font-size: 120%;
+  }
+}
+@media all and (min-height: 760px) {
+  body {
+    font-size: 130%;
+  }
+}
+/*
+|--------------------------------------------------------------------------
+| TILE MQ's
+|--------------------------------------------------------------------------
+*/
+@media all and (max-height: 649px) {
+  nav.nav-main h3, nav.nav-main a {
+    height: 30px;
+  }
+
+  .tile, .block {
+    width: 148px;
+    height: 82px;
+    margin: 2px;
+  }
+
+  .tile.large {
+    width: 300px;
+    height: 168px;
+  }
+
+  .tile.half-height {
+    height: 38px;
+  }
+
+  .col-small {
+    width: 154px;
+  }
+
+  .col-large {
+    width: 306px;
+  }
+}
+@media all and (min-height: 650px) and (max-height: 679px) {
+  nav.nav-main h3, nav.nav-main a {
+    height: 33px;
+  }
+
+  .tile, .block {
+    width: 163px;
+    height: 90px;
+    margin: 2px;
+  }
+
+  .tile.large {
+    width: 330px;
+    height: 184px;
+  }
+
+  .tile.half-height {
+    height: 43px;
+  }
+
+  .col-small {
+    width: 169px;
+  }
+
+  .col-large {
+    width: 336px;
+  }
+}
+@media all and (min-height: 680px) and (max-height: 759px) {
+  nav.nav-main h3, nav.nav-main a {
+    height: 36px;
+  }
+
+  .tile, .block {
+    width: 177px;
+    height: 98px;
+    margin: 3px;
+  }
+
+  .tile.large {
+    width: 360px;
+    height: 202px;
+  }
+
+  .tile.half-height {
+    height: 46px;
+  }
+
+  .col-small {
+    width: 183px;
+  }
+
+  .col-large {
+    width: 367px;
+  }
+}
+@media all and (min-height: 760px) {
+  nav.nav-main h3, nav.nav-main a {
+    height: 39px;
+  }
+
+  .tile, .block {
+    width: 192px;
+    height: 106px;
+    margin: 3px;
+  }
+
+  .tile.large {
+    width: 390px;
+    height: 218px;
+  }
+
+  .tile.half-height {
+    height: 50px;
+  }
+
+  .col-small {
+    width: 198px;
+  }
+
+  .col-large {
+    width: 396px;
+  }
+}
+/*
+|--------------------------------------------------------------------------
+| Animations IN DA HOUSE MOTHERFUCKER!
+|--------------------------------------------------------------------------
+*/
+@-webkit-keyframes Boop {
+  0% {
+    margin-left: 0em;
+  }
+
+  50% {
+    margin-left: -0.2em;
+  }
+
+  100% {
+    margin-left: 0em;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| FONT / ICONS
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| CHANNEL ICONS
+|--------------------------------------------------------------------------
+*/
+.channel header li i {
+  width: 18px;
+  height: 18px;
+  background: url(../img/icons/icons-view-channel.png);
+  display: inline-block;
+  vertical-align: text-top;
+  margin-right: 2px;
+}
+.channel header i.love {
+  background-position: -18px 0;
+}
+.channel header i.subscribe {
+  background-position: -36px 0;
+}
+.channel header i.comments {
+  background-position: -54px 0;
+}
+.channel header i.view-count {
+  background-position: -72px 0;
+}
+.channel header i.video-count {
+  background-position: -90px 0;
+}
+.channel header i.subscriber-count {
+  background-position: -108px 0;
+}
+
+.channel h1 i {
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+@font-face {
+  font-family: "mychannls";
+  src: url("../font/mychannls.eot");
+  src: url("../font/mychannls.eot?#iefix") format("embedded-opentype"), url("../font/mychannls.ttf") format("truetype"), url("../font/mychannls.svg#mychannls") format("svg"), url("../font/mychannls.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "mychannls" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "mychannls" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-allchannels:before {
+  content: "a";
+}
+
+.icon-populair:before {
+  content: "c";
+}
+
+.icon-recommended:before {
+  content: "d";
+}
+
+.icon-staffpicks:before {
+  content: "e";
+}
+
+.icon-new:before {
+  content: "b";
+}
+
+.icon-profile:before {
+  content: "g";
+}
+
+.icon-mychannls:before {
+  content: "f";
+}
+
+.icon-subscriptions:before {
+  content: "h";
+}
+
+.icon-plus:before {
+  content: "i";
+}
+
+.icon-edit:before {
+  content: "j";
+}
+
+.icon-delete:before {
+  content: "k";
+}
+
+.icon-view:before {
+  content: "l";
+  font-size: 90%;
+}
+
+.icon-halfn:before {
+  content: "m";
+}
+
+.icon-cog:before {
+  content: "n";
+}
+
+.icon-follower:before {
+  content: "o";
+}
+
+.icon-following:before {
+  content: "p";
+}
+
+.icon-arrow-up:before {
+  content: "q";
+}
+
+.icon-arrow-down:before {
+  content: "r";
+}
+
+/*
+|--------------------------------------------------------------------------
+| LAYOUT - GRID & TILES
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| GRID
+|--------------------------------------------------------------------------
+*/
+.container {
+  margin-left: 0.5em;
+  margin-top: 9em;
+  height: 21.44em;
+  width: auto;
+  white-space: nowrap;
+  position: relative;
+  z-index: 0;
+}
+
+.home .container {
+  display: none;
+}
+
+.home .grid {
+  overflow: hidden;
+}
+
+.isogrid {
+  height: 70%;
+}
+
+.isogrid.height100 {
+  height: 97%;
+}
+
+.grid {
+  height: 100%;
+  -webkit-transition: width 0.5s ease-in-out;
+  -moz-transition: width 0.5s ease-in-out;
+  -ms-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  display: inline-block;
+  vertical-align: top;
+  width: auto;
+  margin-right: 1.250em !important;
+}
+
+.home .grid.gridMore {
+  max-width: none;
+}
+
+.collum {
+  height: 100%;
+  margin-right: 0.250em;
+  display: inline-block;
+}
+
+.collum.c2 {
+  width: 18.750em;
+}
+
+.collum.c4 {
+  width: 38em;
+  margin-top: 0;
+  vertical-align: top;
+}
+
+.collum.c1 {
+  width: 9.25em;
+}
+
+.grid:hover {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.grid:hover h2 {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| TILES
+|--------------------------------------------------------------------------
+*/
+body.management .tile.large {
+  cursor: initial !important;
+}
+
+.tile.full {
+  width: 18.750em;
+  height: 21.25em;
+  cursor: default;
+}
+
+.tile.wide {
+  width: 18.750em;
+  height: 5.1em;
+}
+
+.tile.x-large {
+  width: 100%;
+  height: 15.9em;
+}
+
+.tile.gray {
+  border: 1px solid #418a97;
+  color: #418a97;
+  font-size: 120%;
+  padding: 0.3em 0.5em;
+  filter: alpha(opacity=40);
+  opacity: 0.4;
+}
+
+.tile.large.button:hover [class^="icon-"], .tile.large.button:hover [class*=" icon-"] {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.tile.large.button:hover h1 {
+  margin-left: 48%;
+}
+.tile.large.button h1 {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  font-weight: 300;
+  width: 40%;
+  margin-left: 46%;
+  color: white;
+  font-size: 1.8em;
+  margin-top: 16%;
+}
+.tile.large.button [class^="icon-"], .tile.large.button [class*=" icon-"] {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  color: white;
+  font-size: 300%;
+  position: absolute;
+  top: 33%;
+  left: 27%;
+}
+
+.tile.large,
+.variable-sizes .tile.large,
+.variable-sizes .tile.large.width2.height2 {
+  z-index: 100;
+}
+.tile.large img,
+.variable-sizes .tile.large img,
+.variable-sizes .tile.large.width2.height2 img {
+  margin-top: -1.8em;
+}
+.tile.large .info,
+.variable-sizes .tile.large .info,
+.variable-sizes .tile.large.width2.height2 .info {
+  position: absolute;
+  bottom: 1.2em;
+  left: 1.250em;
+  color: #fff;
+  max-width: 14.750em;
+}
+.tile.large .info h4,
+.variable-sizes .tile.large .info h4,
+.variable-sizes .tile.large.width2.height2 .info h4 {
+  font-weight: 300;
+  font-size: 2.000em;
+  line-height: 1em;
+  text-shadow: 0.063em 0.063em 0.2em #424242;
+  filter: dropshadow(color=#424242, offx=1, offy=1);
+}
+.tile.large .info h5,
+.variable-sizes .tile.large .info h5,
+.variable-sizes .tile.large.width2.height2 .info h5 {
+  font-weight: 300;
+  margin-top: 0.125em;
+  letter-spacing: 0.063em;
+}
+.tile.large .info h5 span,
+.variable-sizes .tile.large .info h5 span,
+.variable-sizes .tile.large.width2.height2 .info h5 span {
+  font-size: 0.625em;
+}
+
+.block.alpha {
+  margin-left: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.block.omega {
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.tile, .block {
+  z-index: 100;
+  cursor: pointer;
+  white-space: normal;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  box-sizing: border-box;
+  float: left;
+  overflow: hidden;
+  position: relative;
+}
+.tile .order, .block .order {
+  margin-left: 1.2em;
+  margin-top: 0.5em;
+}
+.tile .order a, .block .order a {
+  color: white;
+}
+.tile .options, .block .options {
+  position: absolute;
+  bottom: 0.5em;
+  right: 0.5em;
+  color: white;
+  font-size: 75%;
+}
+.tile .options a, .block .options a {
+  color: white;
+}
+.tile .options a:nth-child(1), .block .options a:nth-child(1) {
+  margin-right: 1.5em;
+}
+.tile .options i, .block .options i {
+  vertical-align: middle;
+}
+.tile .meta, .block .meta {
+  position: absolute;
+  top: -0.5em;
+  right: -2.5em;
+  background: #469fae;
+  z-index: 1;
+  width: 6em;
+  padding-top: 1em;
+  padding-bottom: 0.3em;
+  /* Safari */
+  -webkit-transform: rotate(45deg);
+  /* Firefox */
+  -moz-transform: rotate(45deg);
+  /* IE */
+  -ms-transform: rotate(45deg);
+  /* Opera */
+  -o-transform: rotate(45deg);
+}
+.tile .meta p, .block .meta p {
+  font-size: 11px;
+  margin-top: 7px;
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+.tile .buttons, .block .buttons {
+  position: absolute;
+  bottom: 0;
+  right: 0.2em;
+  z-index: 100;
+}
+.tile .buttons .btn, .block .buttons .btn {
+  width: 1em;
+  height: 1em;
+  background: red;
+  display: inline-block;
+}
+.tile .buttons .setcover, .block .buttons .setcover {
+  background: url(../img/icons/image.svg);
+  background-size: 100%;
+}
+.tile .buttons .deletevideo, .block .buttons .deletevideo {
+  background: url(../img/icons/bin.svg);
+  background-size: 100%;
+}
+.tile img, .block img {
+  margin-top: -0.9em;
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(0%);
+}
+.tile .info, .block .info {
+  position: absolute;
+  bottom: 0.7em;
+  left: 1.250em;
+  color: #fff;
+  max-width: 7em;
+}
+.tile .info h4, .block .info h4 {
+  font-weight: 300;
+  font-size: 0.900em;
+  line-height: 1em;
+}
+.tile .info h5, .block .info h5 {
+  font-weight: 300;
+  margin-top: 0.5em;
+  letter-spacing: 0.063em;
+  font-size: 0.6em;
+}
+.tile .info h5 span, .block .info h5 span {
+  font-size: 0.525em;
+}
+.tile img, .block img {
+  width: 100%;
+  height: 135%;
+}
+.tile iframe, .block iframe {
+  width: 100%;
+  height: 100%;
+}
+.tile h4, .block h4 {
+  color: white;
+  font-size: 1.3em;
+  letter-spacing: 0.063em;
+  font-style: normal;
+  font-weight: 100;
+  line-height: 1.250em;
+}
+.tile .text, .block .text {
+  padding: 0.7em 1.563em;
+}
+.tile .text a.btn, .block .text a.btn {
+  color: white;
+}
+.tile .text h3, .block .text h3 {
+  letter-spacing: 0.063em;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 2.250em;
+}
+.tile .text p, .block .text p {
+  font-size: 0.875em;
+  font-weight: 300;
+}
+.tile .text a, .block .text a {
+  font-size: 0.8em;
+  color: #469fae;
+  text-decoration: none;
+}
+.tile .overlay, .block .overlay {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(76, 153, 167, 0.7);
+  color: rgba(76, 153, 167, 0.7);
+}
+
+/*
+|--------------------------------------------------------------------------
+| HOVER STATES
+|--------------------------------------------------------------------------
+*/
+.tile:hover .overlay {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.tile:hover img {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  /* For Webkit browsers */
+  filter: gray;
+  /* For IE 6 - 9 */
+}
+
+.tile:hover:not(.wide) .center-text {
+  left: 12%;
+}
+
+.tile.wide .block:hover .center-text {
+  left: 12%;
+}
+
+.tile-100:hover .info {
+  left: 1.450em;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CUSTOM TILES
+|--------------------------------------------------------------------------
+*/
+.grid .account {
+  background: url(../img/btn-account.jpg);
+  background-size: contain;
+  float: right;
+}
+.grid .more {
+  background: url(../img/btn-givemore.jpg);
+  background-size: contain;
+}
+.grid .settings {
+  background: url(../img/btn-settings.jpg);
+  background-size: contain;
+}
+.grid .addchannel {
+  background: url(../img/btn-addchannel.jpg);
+  background-size: contain;
+}
+.grid .changecover {
+  background: url(../img/btn-changecover.jpg);
+  background-size: contain;
+  background-position: left center;
+}
+.grid .less {
+  background: url(../img/btn-less.jpg);
+  background-size: contain;
+}
+.grid .stats {
+  background: url(../img/btn-stats.jpg);
+  background-size: contain;
+}
+.grid .preview {
+  background: url(../img/btn-preview.jpg);
+  background-size: contain;
+}
+.grid .follow {
+  background: url(../img/btn-follow.jpg);
+  background-size: contain;
+}
+
+.submit {
+  background: url(../img/btn-givemore.jpg);
+  background-size: contain;
+}
+
+#grid-welcome {
+  position: relative;
+  width: 19.1em;
+  z-index: 0;
+}
+#grid-welcome p {
+  font-size: 0.75em;
+}
+
+.col {
+  display: inline-block;
+  height: auto;
+  vertical-align: top;
+}
+
+/*
+|--------------------------------------------------------------------------
+| OPTION PANES
+|--------------------------------------------------------------------------
+*/
+.btn-group-sociallogin, .btn-facebooklogin {
+  display: inline-block;
+  width: 5.688em;
+  vertical-align: top;
+  margin-top: 5.8em;
+}
+.btn-group-sociallogin .login, .btn-facebooklogin .login {
+  -webkit-transition: padding 0.2s ease-in-out;
+  -moz-transition: padding 0.2s ease-in-out;
+  -ms-transition: padding 0.2s ease-in-out;
+  -o-transition: padding 0.2s ease-in-out;
+  transition: padding 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  height: 1.69em;
+  margin-bottom: 0.250em;
+  font-size: 0.6em;
+  color: #ffffff;
+  font-weight: 300;
+  padding-left: 3.3em;
+  padding-top: 0.73em;
+  display: block;
+  position: static;
+  text-decoration: none;
+}
+.btn-group-sociallogin .facebook, .btn-facebooklogin .facebook {
+  background: url(../img/icons/facebook.jpg) no-repeat #44649b;
+  background-size: contain;
+}
+.btn-group-sociallogin .twitter, .btn-facebooklogin .twitter {
+  background: url(../img/icons/twitter.jpg) no-repeat #33a3d4;
+  background-size: contain;
+}
+.btn-group-sociallogin .google, .btn-facebooklogin .google {
+  background: url(../img/icons/google.jpg) no-repeat #c84232;
+  background-size: contain;
+}
+
+.btn-facebooklogin {
+  display: inline-block;
+  width: 15.3em;
+  vertical-align: top;
+  margin-top: 1.5em;
+  padding-left: 1.563em;
+}
+.btn-facebooklogin .login {
+  height: 2.0em;
+  font-size: 0.7em;
+}
+
+.box-register .optionpane form {
+  margin-top: -0.3em;
+}
+
+.box-register form, .box-register #js-register-submit {
+  display: none;
+}
+
+.box-login .btn-register {
+  font-size: 60%;
+}
+.box-login input[type='checkbox'] {
+  margin-top: 0.75em;
+}
+.box-login a {
+  color: #262626;
+  text-decoration: none;
+  margin-top: 0.688em;
+}
+.box-login a:hover {
+  text-decoration: underline;
+}
+.box-login a.forget {
+  font-size: 0.750em;
+}
+.box-login .login:hover {
+  padding-left: 3.65em;
+  color: white;
+  text-decoration: none;
+}
+.box-login .optionpane form {
+  margin-top: 1.8em;
+}
+
+.box-login, .box-register {
+  display: none;
+  background: #ffffff;
+  position: fixed;
+  top: 7.250em;
+  width: 19em;
+  z-index: 10;
+  left: 8.125em;
+  height: 24.438em;
+}
+.box-login .text-options, .box-register .text-options {
+  padding-left: 1.563em;
+  padding-top: 1.563em;
+  text-align: center;
+}
+.box-login .optionpane, .box-register .optionpane {
+  width: 14.875em;
+}
+.box-login h2, .box-register h2 {
+  font-style: normal;
+  font-weight: 100;
+  margin-bottom: 0.313em;
+}
+.box-login p, .box-login label, .box-register p, .box-register label {
+  font-size: 0.7em;
+}
+.box-login .overlay, .box-register .overlay {
+  @extends overlay-full;
+}
+.box-login .form, .box-register .form {
+  padding: 1.563em;
+}
+.box-login .toptext, .box-register .toptext {
+  display: inline-block;
+  padding-left: 1.563em;
+  padding-top: 1.563em;
+  padding-right: 1.563em;
+}
+.box-login .submit, .box-register .submit {
+  position: absolute;
+  right: -0.125em;
+  bottom: -5.625em;
+}
+.box-login .delete, .box-register .delete {
+  position: absolute;
+  left: 0;
+}
+
+.tile.managemment .fade, body.channeledit .grid .fade {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  z-index: 999;
+}
+.tile.managemment.disabled, body.channeledit .grid.disabled {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  /* For Webkit browsers */
+  filter: gray;
+  /* For IE 6 - 9 */
+}
+.tile.managemment.disabled .fade, body.channeledit .grid.disabled .fade {
+  display: block;
+}
+.tile.managemment.disabled a, body.channeledit .grid.disabled a {
+  pointer-events: none;
+  cursor: default;
+}
+
+.tile.managemment {
+  position: relative;
+}
+.tile.managemment .slideout {
+  margin: 0;
+}
+.tile.managemment h4 {
+  color: #262626;
+}
+.tile.managemment .private {
+  float: left;
+}
+.tile.managemment .tile {
+  margin-left: 0;
+}
+.tile.managemment .providers {
+  width: 7em;
+  position: absolute;
+  height: auto;
+  right: 1.5em;
+  top: 2.1em;
+}
+.tile.managemment .slider {
+  display: inline-block;
+  width: 3em;
+  height: 1.15em;
+  margin-left: 2.7em;
+  background-size: contain;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  vertical-align: bottom;
+}
+.tile.managemment .slider.yes {
+  background-image: url(../img/slider-yes.jpg);
+}
+.tile.managemment .slider.no {
+  background-image: url(../img/slider-no.jpg);
+}
+.tile.managemment .description {
+  height: 5em;
+  overflow: hidden;
+}
+.tile.managemment input.url {
+  width: 56%;
+}
+.tile.managemment .add-order {
+  margin-bottom: 0.7em;
+}
+.tile.managemment .add-order input {
+  margin-left: 2em;
+  vertical-align: middle;
+}
+.tile.managemment .btn-group {
+  position: absolute;
+  bottom: 0;
+  width: 17.15em;
+}
+.tile.managemment .btn-group .btn {
+  width: 35%;
+  display: inline-block;
+  text-align: center;
+}
+.tile.managemment .btn-group .btn:nth-child(1) {
+  margin-right: 1.27em;
+}
+.tile.managemment .cover {
+  margin: 0;
+}
+.tile.managemment label p {
+  display: inline;
+}
+.tile.managemment h2 {
+  font-weight: 300;
+  max-height: 1.4em;
+  overflow: hidden;
+}
+.tile.managemment h2 i {
+  font-size: 55%;
+  vertical-align: middle;
+  color: #418a97;
+  margin-right: 0.3em;
+}
+.tile.managemment h4 {
+  font-weight: 300;
+  margin: 0.6em 0;
+}
+.tile.managemment .text {
+  padding: 0.8em;
+}
+.tile.managemment .half {
+  width: 55%;
+}
+.tile.managemment .bookmarkeklet {
+  background: url(../img/btn-bookmark.jpg);
+  background-size: contain;
+  width: 5.4em;
+  height: 1.5em;
+  position: absolute;
+  right: 1.5em;
+  bottom: 20%;
+}
+.tile.managemment .bookmarkeklet a {
+  width: 100%;
+  font-size: 11px;
+  opacity: 0;
+  height: 100%;
+  display: block;
+  cursor: move;
+}
+.tile.managemment .delete {
+  float: right;
+}
+.tile.managemment .delete .btn [class^="icon-"], .tile.managemment .delete .btn [class*=" icon-"] {
+  position: relative !important;
+  left: 0em;
+}
+.tile.managemment .delete:hover a {
+  background-color: #c8513d;
+}
+.tile.managemment .delete a {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  padding: 0.2em 0.4em 0.2em 0.8em;
+}
+.tile.managemment .dropdown-cat {
+  width: 70%;
+  margin-left: 1em;
+}
+
+.tile:hover.managemment img {
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+  /* For Webkit browsers */
+  filter: gray;
+  /* For IE 6 - 9 */
+}
+
+.welcome {
+  width: 15em;
+  height: 21.26em;
+  background: white;
+}
+.welcome .slideout {
+  position: relative;
+  width: 11em;
+  padding: 2em;
+  height: 21.26em;
+}
+.welcome .close {
+  color: #333;
+}
+
+.first-time {
+  margin: 3px;
+  width: 0em;
+  color: white;
+}
+.first-time h2, .first-time h3 {
+  text-shadow: 1px 1px 1px #6F6F6F;
+  filter: dropshadow(color=#6f6f6f, offx=1, offy=1);
+}
+.first-time .slideout {
+  position: relative;
+  width: 46.875em;
+  height: 21.26em;
+  margin-right: 1em;
+  background: url("../img/cover.jpg") no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.first-time .text {
+  float: right;
+  margin-right: 4em;
+  margin-top: 1.5em;
+}
+.first-time.transition {
+  -webkit-transition: width 0.5s ease-in-out;
+  -moz-transition: width 0.5s ease-in-out;
+  -ms-transition: width 0.5s ease-in-out;
+  -o-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+}
+
+.first-time, .welcome {
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+}
+.first-time h2, .welcome h2 {
+  font-size: 2.625em;
+  margin-bottom: 0.3em;
+}
+.first-time h3, .welcome h3 {
+  font-size: 1.125em;
+  margin-bottom: 1.5em;
+  line-height: 1.5em;
+}
+.first-time h3 a, .welcome h3 a {
+  text-decoration: underline;
+}
+
+/*
+|--------------------------------------------------------------------------
+| LAYOUT - PAGES
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| Channel View 
+|--------------------------------------------------------------------------
+*/
+#btns-channl, #grid-myvideos {
+  display: none;
+}
+#btns-channl .info, #grid-myvideos .info {
+  position: absolute;
+  top: 0.7em;
+}
+#btns-channl .tile .info h4, #btns-channl .block .info h4, #grid-myvideos .tile .info h4, #grid-myvideos .block .info h4 {
+  font-size: 0.8em;
+  max-height: 4.9em;
+}
+
+/* THIS IS BECOMMING A MESS!!!  -> 24h later, ok ok i got this. this is kinda ok now... */
+.channel {
+  position: relative;
+  z-index: 10;
+  /*
+  |--------------------------------------------------------------------------
+  | COMMENTS
+  |--------------------------------------------------------------------------
+  */
+  /*
+  |--------------------------------------------------------------------------
+  | VIDEO BACKGROUND SLIDER
+  |--------------------------------------------------------------------------
+  */
+  /*
+  |--------------------------------------------------------------------------
+  | VIDEO
+  |--------------------------------------------------------------------------
+  */
+}
+.channel .backdrop {
+  background: none;
+  z-index: 1;
+}
+.channel .backdrop .btn-menu {
+  filter: alpha(opacity=70);
+  opacity: 0.7;
+}
+.channel nav.filters, .channel .search {
+  display: none;
+}
+.channel .container {
+  padding-left: 0px;
+  z-index: 2;
+}
+.channel nav.main ul {
+  background: #418a97;
+}
+.channel nav.main ul li a {
+  color: #FFF;
+  border-left: 1.25em solid #418a97;
+}
+.channel .comments.show {
+  filter: alpha(opacity=100);
+  opacity: 1;
+  z-index: 1;
+  display: block;
+  pointer-events: auto;
+}
+.channel .comments.first {
+  display: none;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.channel .comments {
+  pointer-events: none;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  z-index: -1;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  position: fixed;
+  right: 10em;
+  z-index: 1;
+  left: 50%;
+  margin-left: 20.05em;
+}
+.channel .comments h3 {
+  color: #418a97;
+  position: absolute;
+  top: -1.55em;
+  font-weight: 100;
+  font-size: 150%;
+}
+.channel .comments .collum {
+  background: #418a97;
+  height: 29.5em;
+}
+.channel .comments .collum li {
+  list-style: none;
+  padding: 2em 1.4em;
+  padding-bottom: 2.5em;
+  display: block;
+}
+.channel .comments .collum li img {
+  width: 3.5em;
+  float: left;
+}
+.channel .comments .collum li p {
+  float: left;
+  padding-left: 1em;
+  width: 10em;
+  white-space: initial;
+  color: #FFF;
+  @extends font-nova;
+  font-variant: normal;
+  font-size: 113%;
+  font-weight: 100;
+  letter-spacing: 0.1em;
+  margin-bottom: 1em;
+  padding-top: 0.4em;
+}
+.channel .comments .collum li p span {
+  display: block;
+  font-size: 62%;
+  margin-top: 0.4em;
+}
+.channel .videoslider {
+  -webkit-transition: margin-left 1s ease-in-out;
+  -moz-transition: margin-left 1s ease-in-out;
+  -ms-transition: margin-left 1s ease-in-out;
+  -o-transition: margin-left 1s ease-in-out;
+  transition: margin-left 1s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  position: fixed;
+  left: 50%;
+  margin-left: -19.5em;
+  margin-right: 1.7em;
+}
+.channel .videoslider .c4 {
+  margin-right: 0.85em;
+}
+.channel .videoslider .c4 .videoimage {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  /* For Webkit browsers */
+  filter: gray;
+  /* For IE 6 - 9 */
+  -webkit-transition: filter 0.2s ease-in-out;
+  -moz-transition: filter 0.2s ease-in-out;
+  -ms-transition: filter 0.2s ease-in-out;
+  -o-transition: filter 0.2s ease-in-out;
+  transition: filter 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  height: 21em;
+  width: 100%;
+  background-size: cover;
+  background-position: left center;
+  position: relative;
+}
+.channel .videoslider .c4 .videoimage .overlay-dark {
+  position: absolute;
+}
+.channel .videoslider .c4 .videoimage h3.prev {
+  text-align: right;
+  border-right: 0.8em solid #4c99a7;
+  border-left: none;
+  padding-right: 0.1em;
+  position: absolute;
+  right: 0;
+}
+.channel .videoslider .c4 .videoimage h3 {
+  position: absolute;
+  @extends font-nova;
+  height: 1.85em;
+  font-variant: normal;
+  color: #ffffff;
+  font-weight: 100;
+  font-size: 1.5em;
+  border-left: 0.8em solid #418a97;
+  padding-left: 0.7em;
+  padding-top: 0.56em;
+  display: inline-block;
+  width: 11.07em;
+  text-shadow: 0.063em 0.063em 0.2em #424242;
+  filter: dropshadow(color=#424242, offx=1, offy=1);
+}
+.channel .grid.video {
+  position: fixed;
+  left: 50%;
+  margin-left: -19.5em;
+  z-index: 1;
+  /*
+  |--------------------------------------------------------------------------
+  | VIDEO SELECT SLIDER
+  |--------------------------------------------------------------------------
+  */
+  /*
+  |--------------------------------------------------------------------------
+  | EMBEDDED VIDEO
+  |--------------------------------------------------------------------------
+  */
+}
+.channel .grid.video header {
+  position: absolute;
+  top: -2em;
+  width: 38em;
+}
+.channel .grid.video header .menu {
+  top: -2em;
+}
+.channel .grid.video header .menu li {
+  font-size: 90%;
+  filter: alpha(opacity=40);
+  opacity: 0.4;
+}
+.channel .grid.video header .menu li a {
+  color: #418a97;
+}
+.channel .grid.video header .menu li:hover {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.channel .grid.video header ul {
+  position: absolute;
+  right: 0;
+  top: 0.3em;
+  padding-right: 0.4em;
+}
+.channel .grid.video header ul li {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  @extends font-nova;
+  font-weight: 300;
+  display: inline;
+  font-size: 70%;
+  color: #418a97;
+  margin-left: 2em;
+}
+.channel .grid.video h1, .channel .grid.video h1 a {
+  color: #418a97;
+  font-weight: 100;
+  font-variant: normal;
+}
+.channel .grid.video h1 span, .channel .grid.video h1 a span {
+  font-size: 0.6em;
+}
+.channel .grid.video .videoselector {
+  overflow: hidden;
+  margin-top: 0.270em;
+}
+.channel .grid.video .videoselector .tile {
+  background-size: cover;
+  background-position: left center;
+}
+.channel .grid.video .videoselector .playing .tile .overlay {
+  filter: alpha(opacity=100);
+  opacity: 1;
+  background-color: rgba(234, 53, 86, 0.7);
+  color: rgba(234, 53, 86, 0.7);
+}
+.channel .grid.video .videoselector ul {
+  -webkit-transition: margin-left 0.4s ease-in-out;
+  -moz-transition: margin-left 0.4s ease-in-out;
+  -ms-transition: margin-left 0.4s ease-in-out;
+  -o-transition: margin-left 0.4s ease-in-out;
+  transition: margin-left 0.4s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+}
+.channel .grid.video .videoselector li {
+  display: inline-block;
+}
+.channel .grid.video .videoselector li a {
+  filter: grayscale(40%);
+  -webkit-filter: grayscale(40%);
+  /* For Webkit browsers */
+  filter: gray;
+  /* For IE 6 - 9 */
+}
+.channel .grid.video .videoselector h4 {
+  max-width: 7em;
+}
+.channel .grid.video .slider-control {
+  display: none;
+  @extends font-nova;
+  text-shadow: 0.063em 0.063em 0.2em #424242;
+  filter: dropshadow(color=#424242, offx=1, offy=1);
+  position: absolute;
+  top: 11.45em;
+  color: #418a97;
+  z-index: 1;
+  font-size: 200%;
+  font-weight: 300;
+}
+.channel .grid.video .left {
+  left: -0.3em;
+}
+.channel .grid.video .right {
+  right: -0.19em;
+}
+.channel .grid.video .embed-video, .channel .grid.video .players {
+  height: 21.2em;
+}
+.channel .grid.video .embed-video iframe, .channel .grid.video .players iframe {
+  width: 100%;
+  height: 100%;
+}
+.channel .grid.video .embed-video .playercontrols, .channel .grid.video .players .playercontrols {
+  display: none;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  -ms-transition: opacity 0.5s ease-in-out;
+  -o-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  background: #418a97;
+  position: absolute;
+  bottom: 0;
+  width: 39.750em;
+  height: 2.7em;
+}
+.channel .grid.video .embed-video .playercontrols h2, .channel .grid.video .players .playercontrols h2 {
+  color: #FFF;
+}
+
+.overlay-dark {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  filter: alpha(opacity=85);
+  opacity: 0.85;
+}
+
+body.channel {
+  overflow: hidden;
+}
+
+/*
+|--------------------------------------------------------------------------
+| HOEVR STATES
+|--------------------------------------------------------------------------
+*/
+.videoimage:hover {
+  filter: grayscale(0%) !important;
+  -webkit-filter: grayscale(0%) !important;
+  filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='grayscale'><feColorMatrix type='matrix' values='1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0'/></filter></svg>#grayscale");
+  cursor: pointer;
+}
+.videoimage:hover .overlay-dark {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+.embed-video:hover .playercontrols {
+  filter: alpha(opacity=0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+ /*
+|--------------------------------------------------------------------------
+| Profile page
+|--------------------------------------------------------------------------
+*/
+#user-profile .userinfo h4 {
+  max-width: 100%;
+  color: #262626;
+}
+#user-profile .userinfo p.date {
+  font-size: 0.6em;
+  margin-bottom: 1.2em;
+  color: #418a97;
+}
+#user-profile ul.user-stats {
+  padding: 1.1em 1.5em;
+}
+#user-profile ul.user-stats li {
+  float: left;
+  width: 50%;
+  list-style: none;
+  margin-bottom: 0.5em;
+}
+
+/*
+|--------------------------------------------------------------------------
+| mangement View 
+|--------------------------------------------------------------------------
+*/
+.back {
+  display: none;
+  position: fixed;
+  top: 7.3em;
+  left: 0.5em;
+  z-index: 11;
+}
+.back a {
+  color: #418a97;
+}
+
+body.channelcreate .back, body.channeledit .back {
+  display: block;
+}
+
+#grid-mychannls .loading {
+  background: url(../img/loading.gif);
+  background-size: contain;
+  width: 5em;
+  height: 5em;
+  position: absolute;
+  top: 32%;
+  right: -7em;
+  display: none;
+  z-index: -1;
+}
+
+.warning {
+  border: red solid 1px !important;
+}
+
+.feedback {
+  display: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(76, 153, 167, 0.7);
+  color: white;
+  pointer-events: none;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 15;
+}
+.feedback h4 {
+  position: absolute;
+  top: 10%;
+  padding: 5%;
+  text-align: center;
+  color: white !important;
+  letter-spacing: 0.063em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.250em;
+  font-size: 350%;
+}
+
+.tile.small .feedback h4 {
+  font-size: 125%;
+}
+
+.feedback.error {
+  background-color: rgba(243, 93, 79, 0.7);
+}
+
+.about-submenu li {
+  display: inline-block;
+  margin-right: 3.438em;
+}
+.about-submenu li a {
+  font-size: 1em;
+  color: #499caa;
+  opacity: 0.4;
+}
+.about-submenu li a.active {
+  opacity: 1;
+  text-decoration: underline;
+}
+.about-submenu li a:hover {
+  opacity: 1;
+}
+
+.about-page h1, .tv-page h1 {
+  font-size: 1.500em;
+  font-weight: 500;
+  margin: 1.250em 0;
+}
+.about-page .tile, .tv-page .tile {
+  height: auto !important;
+  padding-bottom: 1.188em;
+}
+.about-page .text p, .tv-page .text p {
+  padding: 0.625em 0;
+  font-size: 1em;
+}
+.about-page .about-block, .tv-page .about-block {
+  display: none;
+  width: 57.500em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 8.125em;
+}
+.about-page .sidebar, .about-page .about-grid, .tv-page .sidebar, .tv-page .about-grid {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.tv-page .about-block {
+  display: block;
+}
+
+.tvapp-image {
+  margin-left: 9.375em;
+}
+
+.about-share .content, .about-watch .content {
+  padding-left: 3.750em;
+  width: 40% !important;
+}
+
+.about-grid {
+  width: 41.25em;
+  white-space: initial;
+  margin-left: 3.125em;
+}
+.about-grid .btn-bookmark {
+  background: url(../img/btn-bookmark.jpg);
+  background-size: contain;
+  width: 5.625em;
+  height: 1.563em;
+  margin-bottom: 0.5em;
+  cursor: pointer;
+  text-indent: -9999px;
+  z-index: 1;
+  display: inline-block;
+  vertical-align: inherit;
+}
+.about-grid .btn-bookmark a {
+  width: 100%;
+  font-size: 0.688em;
+  opacity: 0;
+  height: 100%;
+  display: block;
+  cursor: move;
+}
+.about-grid .btn-bookmark + span {
+  margin-left: 0.688em;
+}
+.about-grid .content {
+  vertical-align: top;
+  width: 49%;
+  display: inline-block;
+  min-height: 6.250em;
+  margin-bottom: 1.250em;
+  font-weight: 100;
+}
+.about-grid .content.subscribe {
+  background: url(../img/about-subscribe.png) no-repeat;
+}
+.about-grid .content.love {
+  background: url(../img/about-love.png) no-repeat;
+}
+.about-grid .content.share {
+  background: url(../img/about-share.png) no-repeat;
+}
+.about-grid .content.followperson {
+  background: url(../img/about-follow.png) no-repeat;
+}
+.about-grid .content h3 {
+  color: #418a97;
+  font-size: 1.500em;
+  font-weight: 300;
+  margin-bottom: 0.625em;
+}
+.about-grid .content li {
+  list-style: initial;
+  margin-left: 1.375em;
+  white-space: initial;
+}
+.about-grid .tip {
+  position: relative;
+  width: 12.500em;
+  font-size: 0.875em;
+  margin-left: 13.750em;
+}
+.about-grid .tip:before {
+  content: "Tip:";
+  display: block;
+  font-size: 0.875em;
+  color: #418a97;
+  position: absolute;
+  left: -1.938em;
+  font-weight: 600;
+}
+
+.grid-wrapper {
+  display: inline-block;
+  position: relative;
+}
+.grid-wrapper .about-grid {
+  position: absolute;
+  margin-top: -1.250em;
+  display: none;
+}
+.grid-wrapper .about-grid:nth-child(1) {
+  display: block;
+}
+
+.about-create-container {
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+}
+.about-create-container .text {
+  display: none;
+}
+.about-create-container .text:nth-child(1) {
+  display: block;
+}
+.about-create-container .text li.create-list {
+  cursor: pointer;
+  color: #b2b2b2;
+}
+.about-create-container .text li.create-list.active {
+  color: #262626;
+}
+
+.sidebar {
+  white-space: normal;
+  width: 18.750em;
+}
+.sidebar li {
+  margin-left: 1.188em;
+  font-weight: 100;
+}
+.sidebar .about-create-nav li {
+  list-style: none;
+  margin-left: 0.188em;
+}
+.sidebar .about-create-nav li.active button {
+  background-color: #e6a300;
+}
+.sidebar .about-create-nav button {
+  cursor: pointer;
+  width: 100%;
+  background-color: #469fae;
+  font-size: 0.7em;
+  font-family: "proxima-nova",sans-serif;
+  color: white;
+  padding: 0.3em 2.188em;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.063em;
+}
+
+.grid .browsehappy {
+  margin-top: 3em;
+}
+.grid .browsehappy h1, .grid .browsehappy p {
+  color: white;
+  font-size: 2.250em;
+  font-weight: 100;
+  margin-top: 0.5em;
+}
+.grid .browsehappy p {
+  margin-top: 1em;
+  font-size: 1.313em;
+}
+
+.grid.browsehappy {
+  padding: 2em;
+  width: 15.625em;
+  white-space: initial;
+  font-weight: 100;
+}
+.grid.browsehappy b {
+  font-weight: 500;
+  margin: 0.4em 0;
+  display: block;
+}
+.grid.browsehappy h3 {
+  margin-top: 1.5em;
+  vertical-align: text-bottom;
+  font-weight: 100;
+  font-size: 1.500em;
+  margin-bottom: 0.5em;
+}
+.grid.browsehappy img {
+  vertical-align: middle;
+}
+
+.tv-page .tv {
+  width: 53em;
+  display: inline-block;
+}
+.tv-page .tv .code {
+  cursor: pointer;
+  background: #418a97;
+  color: white;
+  padding: 10px;
+  width: 15em;
+  margin: auto;
+  text-align: center;
+  font-size: 25px;
+}
+
+.videoWrapper {
+  width: 76.9%;
+  position: relative;
+  padding-bottom: 43.25%;
+  height: 0;
+  display: inline-block;
+  margin-right: 2em;
+}
+
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*
+|--------------------------------------------------------------------------
+| SECTIONS
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| MENU
+|--------------------------------------------------------------------------
+*/
+nav li {
+  display: block;
+}
+nav a {
+  text-decoration: none;
+}
+
+.anchor {
+  width: 0;
+  height: 0;
+  display: inline-block;
+}
+
+nav.nav-main {
+  background-color: #469fae;
+  display: inline-block;
+  width: 9.375em;
+  z-index: 10;
+  margin: 3px;
+  margin-left: 0.5em;
+  height: 21.25em;
+  overflow: hidden;
+}
+nav.nav-main [class^="icon-"], nav.nav-main [class*=" icon-"] {
+  vertical-align: middle;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  text-shadow: 1px 1px 1px #418a97;
+  filter: dropshadow(color=#418a97, offx=1, offy=1);
+}
+nav.nav-main.place-holder {
+  display: none;
+  background-color: transparent;
+}
+nav.nav-main h3, nav.nav-main a {
+  padding-top: 0.84em;
+  border-bottom: 1px solid #397a86;
+}
+nav.nav-main h3 {
+  color: white;
+  font-size: 1.125em;
+  font-weight: 600;
+  padding-left: 10%;
+  line-height: 80%;
+}
+nav.nav-main .personal {
+  background-color: #1f7b8b;
+  border-bottom: 1px solid #1b6d7b;
+}
+nav.nav-main .active {
+  background-color: #418a97;
+}
+nav.nav-main a {
+  display: block;
+  font-size: 0.875em;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  padding-left: 10%;
+  color: white;
+}
+nav.nav-main a:hover {
+  padding-left: 1.3em;
+  background-color: #418a97 !important;
+}
+nav.nav-main a:hover [class^="icon-"], nav.nav-main a:hover [class*=" icon-"] {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+nav.nav-main.sticky {
+  position: fixed;
+  left: 0;
+  -webkit-box-shadow: 5px 5px 20px 7px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 20px 7px rgba(0, 0, 0, 0.2);
+}
+
+nav.topnav {
+  z-index: 10;
+  position: fixed;
+  right: 2em;
+  top: 0;
+}
+nav.topnav .userinfo {
+  display: inline-block;
+  z-index: 1;
+  margin-right: 1em;
+  cursor: pointer;
+}
+nav.topnav .userinfo p {
+  font-size: 0.7em;
+  display: inline-block;
+  color: #418a97;
+  font-weight: 200;
+}
+nav.topnav .userinfo .profilepic {
+  height: 1.5em;
+  width: 1.5em;
+  background-size: cover;
+  background-position: left center;
+  display: inline-block;
+  vertical-align: middle;
+}
+nav.topnav .user-dropdown {
+  display: none;
+  background: #f5f3f3;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  border: 1px solid #e4e4e5;
+  border-bottom: none;
+  width: 11.2em;
+  margin-top: 0.8em;
+  position: relative;
+  z-index: 99;
+}
+nav.topnav .user-dropdown a {
+  border-bottom: 1px solid #e4e4e5;
+  font-size: 0.813em;
+  color: #418a97;
+  font-weight: 200;
+  display: block;
+  padding: 5% 13%;
+  padding-right: 0;
+}
+nav.topnav .user-dropdown a.profile {
+  background: url(../img/icons/user-profile.jpg) 4% center no-repeat;
+}
+nav.topnav .user-dropdown a.management {
+  background: url(../img/icons/user-management.jpg) 4% center no-repeat;
+}
+nav.topnav .user-dropdown a.logout {
+  background: url(../img/icons/user-logout.jpg) 4% center no-repeat;
+}
+nav.topnav .user-dropdown:after, nav.topnav .user-dropdown:before {
+  bottom: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+nav.topnav .user-dropdown:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-bottom-color: #f5f3f3;
+  border-width: 15px;
+  left: 50%;
+  margin-left: -15px;
+}
+nav.topnav .user-dropdown:before {
+  border-color: rgba(228, 228, 229, 0);
+  border-bottom-color: #e4e4e5;
+  border-width: 16px;
+  left: 50%;
+  margin-left: -16px;
+}
+
+.btn {
+  cursor: pointer;
+  @extends font-nova;
+  -webkit-transition: background-color 0.3s ease-in-out;
+  -moz-transition: background-color 0.3s ease-in-out;
+  -ms-transition: background-color 0.3s ease-in-out;
+  -o-transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  padding: 0.46em 1.2em;
+  font-size: 0.688em;
+  color: #ffffff;
+  text-decoration: none;
+  z-index: 1;
+  position: relative;
+}
+.btn [class^="icon-"], .btn [class*=" icon-"] {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  position: absolute;
+  left: 0.6em;
+}
+.btn.bg-darkgreen:hover {
+  background-color: #1f7b8b !important;
+}
+.btn.bg-darkgreen:hover [class^="icon-"], .btn.bg-darkgreen:hover [class*=" icon-"] {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.btn.bg-gray:hover {
+  background-color: #b2b2b2 !important;
+}
+.btn.bg-gray:hover [class^="icon-"], .btn.bg-gray:hover [class*=" icon-"] {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+.btn.bg-orange:hover {
+  background-color: #da8500 !important;
+}
+.btn.bg-orange:hover [class^="icon-"], .btn.bg-orange:hover [class*=" icon-"] {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| OLD MENU
+|--------------------------------------------------------------------------
+*/
+.subnav {
+  display: none;
+  position: fixed;
+  top: 4.438em;
+  right: 0;
+  z-index: 1;
+}
+
+body.home .subnav, .learning .subnav {
+  display: block;
+}
+
+.channel nav.topnav .btn-login {
+  color: #262626;
+}
+
+nav.filters {
+  display: none;
+}
+nav.filters ul {
+  margin-right: 15.750em;
+}
+nav.filters .sidelist li {
+  display: inline;
+  margin-right: 1.125em;
+}
+nav.filters .dropdownbox {
+  width: 12.7em;
+}
+nav.filters .dropdownbox .a {
+  display: block;
+  padding: 0.5em;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  color: #469fae;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.9em;
+  cursor: pointer;
+  @extends font-nova;
+}
+nav.filters .dropdownbox .a .filter {
+  text-decoration: underline;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+nav.filters .dropdownbox .a .icon {
+  font-size: 0.6em;
+  margin-left: 0.5em;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+}
+nav.filters .dropdownbox .a .icon:hover {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+nav.filters .dropdownbox.open {
+  background: #fff;
+}
+nav.filters .dropdownbox.open .icon {
+  display: none;
+}
+nav.filters ul.dropdown.open {
+  display: block;
+}
+nav.filters ul.dropdown {
+  display: none;
+  background: #fff;
+  position: absolute;
+  z-index: 15;
+  width: 10em;
+}
+nav.filters ul.dropdown a {
+  font-size: 0.9em;
+  padding: 0.5em;
+  display: block;
+  border-left: 0.6em solid white;
+}
+nav.filters ul.dropdown li:hover a {
+  cursor: pointer;
+  border-left: 0.6em solid #418a97;
+  padding-left: 0.9em;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+nav.filters a {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  color: #469fae;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.875em;
+  @extends font-nova;
+}
+nav.filters a.active {
+  text-decoration: underline;
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| HOVER STATES
+|--------------------------------------------------------------------------
+*/
+nav.filters .sidelist li a:hover {
+  filter: alpha(opacity=100);
+  opacity: 1;
+  margin-bottom: 0.125em;
+}
+
+.grid.video .menu li:hover {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| SEARCH
+|--------------------------------------------------------------------------
+*/
+input.search {
+  @extends font-nova;
+  position: fixed;
+  font-size: 0.7em;
+  right: 5em;
+  top: 6.338em;
+  background: #e7ecec;
+  border: 1px solid #ccdde0;
+  width: 12em;
+  padding: 5px 7px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Footer
+|--------------------------------------------------------------------------
+*/
+footer {
+  position: fixed;
+  bottom: 1em;
+  right: 1.5em;
+  font-size: 0.688em;
+  color: #469fae;
+  @extends font-nova;
+  z-index: 2;
+}
+footer a {
+  color: #469fae;
+  text-decoration: none;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+}
+footer a:hover {
+  filter: alpha(opacity=100);
+  opacity: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Background en logo
+|--------------------------------------------------------------------------
+*/
+.backdrop {
+  background: url(../img/backdrop.png) no-repeat;
+  background-size: 100%;
+  width: 31.563em;
+  height: 36.500em;
+  position: fixed;
+  top: 0;
+  left: 2px;
+}
+.backdrop .logo {
+  background: url(../img/logo.svg) no-repeat;
+  background-size: 100%;
+  position: absolute;
+  width: 10.250em;
+  height: 3.5em;
+  top: 1.750em;
+  left: 8.2em;
+  cursor: pointer;
+  z-index: 1;
+  filter: alpha(opacity=90);
+  opacity: 0.9;
+}
+.backdrop .btn-menu {
+  display: none;
+  color: #e6a300;
+  width: 5.5em;
+  height: 1.5em;
+  position: absolute;
+  top: 4.513em;
+  left: 18.7em;
+  padding-left: 1.2em;
+  cursor: pointer;
+  z-index: 1;
+  -webkit-animation: Boop 1s infinite;
+  -webkit-transition: margin-left 0.2 ease-in-out;
+  -moz-transition: margin-left 0.2 ease-in-out;
+  -ms-transition: margin-left 0.2 ease-in-out;
+  -o-transition: margin-left 0.2 ease-in-out;
+  transition: margin-left 0.2 ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  background: url(../img/bobmenu.svg) no-repeat;
+  background-size: 100%;
+}
+.backdrop .btn-menu p {
+  font-size: 0.688em;
+  margin-top: 0.37em;
+  padding-left: 0.44em;
+}
+
+.backdrop:hover .logo, .backdrop:hover .btn-menu {
+  z-index: 5;
+}
+
+/*
+|--------------------------------------------------------------------------
+| VENDORS
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| TOOLTIP
+|--------------------------------------------------------------------------
+*/
+/* This is the default Tooltipster theme (feel free to modify or duplicate and create multiple themes!): */
+.tooltipster-default {
+  border-radius: 5px;
+  background: #4c99a7;
+  color: #fff;
+}
+
+/* Use this next selector to style things like font-size and line-height: */
+.tooltipster-default .tooltipster-content {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 8px 10px;
+  overflow: hidden;
+}
+
+/* This next selector defines the color of the border on the outside of the arrow. This will automatically match the color and size of the border set on the main tooltip styles. Set display: none; if you would like a border around the tooltip but no border around the arrow */
+.tooltipster-default .tooltipster-arrow .tooltipster-arrow-border {
+  /* border-color: ... !important; */
+}
+
+/* If you're using the icon option, use this next selector to style them */
+.tooltipster-icon {
+  cursor: help;
+  margin-left: 4px;
+}
+
+/* This is the base styling required to make all Tooltipsters work */
+.tooltipster-base {
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  z-index: 9999999;
+  pointer-events: none;
+  width: auto;
+  overflow: visible;
+}
+
+.tooltipster-base .tooltipster-content {
+  overflow: hidden;
+}
+
+/* These next classes handle the styles for the little arrow attached to the tooltip. By default, the arrow will inherit the same colors and border as what is set on the main tooltip itself. */
+.tooltipster-arrow {
+  display: block;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.tooltipster-arrow span, .tooltipster-arrow-border {
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.tooltipster-arrow-top span, .tooltipster-arrow-top-right span, .tooltipster-arrow-top-left span {
+  border-left: 8px solid transparent !important;
+  border-right: 8px solid transparent !important;
+  border-top: 8px solid;
+  bottom: -8px;
+}
+
+.tooltipster-arrow-top .tooltipster-arrow-border, .tooltipster-arrow-top-right .tooltipster-arrow-border, .tooltipster-arrow-top-left .tooltipster-arrow-border {
+  border-left: 9px solid transparent !important;
+  border-right: 9px solid transparent !important;
+  border-top: 9px solid;
+  bottom: -8px;
+}
+
+.tooltipster-arrow-bottom span, .tooltipster-arrow-bottom-right span, .tooltipster-arrow-bottom-left span {
+  border-left: 8px solid transparent !important;
+  border-right: 8px solid transparent !important;
+  border-bottom: 8px solid;
+  top: -8px;
+}
+
+.tooltipster-arrow-bottom .tooltipster-arrow-border, .tooltipster-arrow-bottom-right .tooltipster-arrow-border, .tooltipster-arrow-bottom-left .tooltipster-arrow-border {
+  border-left: 9px solid transparent !important;
+  border-right: 9px solid transparent !important;
+  border-bottom: 9px solid;
+  top: -8px;
+}
+
+.tooltipster-arrow-top span, .tooltipster-arrow-top .tooltipster-arrow-border, .tooltipster-arrow-bottom span, .tooltipster-arrow-bottom .tooltipster-arrow-border {
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.tooltipster-arrow-top-left span, .tooltipster-arrow-bottom-left span {
+  left: 6px;
+}
+
+.tooltipster-arrow-top-left .tooltipster-arrow-border, .tooltipster-arrow-bottom-left .tooltipster-arrow-border {
+  left: 5px;
+}
+
+.tooltipster-arrow-top-right span, .tooltipster-arrow-bottom-right span {
+  right: 6px;
+}
+
+.tooltipster-arrow-top-right .tooltipster-arrow-border, .tooltipster-arrow-bottom-right .tooltipster-arrow-border {
+  right: 5px;
+}
+
+.tooltipster-arrow-left span, .tooltipster-arrow-left .tooltipster-arrow-border {
+  border-top: 8px solid transparent !important;
+  border-bottom: 8px solid transparent !important;
+  border-left: 8px solid;
+  top: 50%;
+  margin-top: -7px;
+  right: -8px;
+}
+
+.tooltipster-arrow-left .tooltipster-arrow-border {
+  border-top: 9px solid transparent !important;
+  border-bottom: 9px solid transparent !important;
+  border-left: 9px solid;
+  margin-top: -8px;
+}
+
+.tooltipster-arrow-right span, .tooltipster-arrow-right .tooltipster-arrow-border {
+  border-top: 8px solid transparent !important;
+  border-bottom: 8px solid transparent !important;
+  border-right: 8px solid;
+  top: 50%;
+  margin-top: -7px;
+  left: -8px;
+}
+
+.tooltipster-arrow-right .tooltipster-arrow-border {
+  border-top: 9px solid transparent !important;
+  border-bottom: 9px solid transparent !important;
+  border-right: 9px solid;
+  margin-top: -8px;
+}
+
+/* Some CSS magic for the awesome animations - feel free to make your own custom animations and reference it in your Tooltipster settings! */
+.tooltipster-fade {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -moz-transition-property: opacity;
+  -o-transition-property: opacity;
+  -ms-transition-property: opacity;
+  transition-property: opacity;
+}
+
+.tooltipster-fade-show {
+  opacity: 1;
+}
+
+.tooltipster-grow {
+  -webkit-transform: scale(0, 0);
+  -moz-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+  -webkit-backface-visibility: hidden;
+}
+
+.tooltipster-grow-show {
+  -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+.tooltipster-swing {
+  opacity: 0;
+  -webkit-transform: rotateZ(4deg);
+  -moz-transform: rotateZ(4deg);
+  -o-transform: rotateZ(4deg);
+  -ms-transform: rotateZ(4deg);
+  transform: rotateZ(4deg);
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  -ms-transition-property: -ms-transform;
+  transition-property: transform;
+}
+
+.tooltipster-swing-show {
+  opacity: 1;
+  -webkit-transform: rotateZ(0deg);
+  -moz-transform: rotateZ(0deg);
+  -o-transform: rotateZ(0deg);
+  -ms-transform: rotateZ(0deg);
+  transform: rotateZ(0deg);
+  -webkit-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+  -moz-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+  -ms-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+  -o-transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+  transition-timing-function: cubic-bezier(0.23, 0.635, 0.495, 2.4);
+}
+
+.tooltipster-fall {
+  top: 0;
+  -webkit-transition-property: top;
+  -moz-transition-property: top;
+  -o-transition-property: top;
+  -ms-transition-property: top;
+  transition-property: top;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+.tooltipster-fall.tooltipster-dying {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  top: 0px !important;
+  opacity: 0;
+}
+
+.tooltipster-slide {
+  left: -40px;
+  -webkit-transition-property: left;
+  -moz-transition-property: left;
+  -o-transition-property: left;
+  -ms-transition-property: left;
+  transition-property: left;
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -ms-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.15);
+}
+
+.tooltipster-slide.tooltipster-dying {
+  -webkit-transition-property: all;
+  -moz-transition-property: all;
+  -o-transition-property: all;
+  -ms-transition-property: all;
+  transition-property: all;
+  left: 0px !important;
+  opacity: 0;
+}
+
+/* CSS transition for when contenting is changing in a tooltip that is still open. The only properties that will NOT transition are: width, height, top, and left */
+.tooltipster-content-changing {
+  opacity: 0.5;
+  -webkit-transform: scale(1.1, 1.1);
+  -moz-transform: scale(1.1, 1.1);
+  -o-transform: scale(1.1, 1.1);
+  -ms-transform: scale(1.1, 1.1);
+  transform: scale(1.1, 1.1);
+}
+
+/*
+|--------------------------------------------------------------------------
+| DEBUG
+|--------------------------------------------------------------------------
+*/
+.debug-bar {
+  z-index: 9999;
+  position: fixed;
+  bottom: 0;
+  vertical-align: bottom;
+}
+.debug-bar ul {
+  font-size: 0;
+}
+.debug-bar li {
+  display: inline-block;
+  font-size: 0;
+}
+.debug-bar .action, .debug-bar h3 {
+  display: block;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  /*  SOME CRASY ASS STUFF!! no questiosn asked. */
+  -webkit-transform: translateZ(0px);
+  font-smoothing: antialiased;
+  background-color: #333;
+  color: white !important;
+  height: 100%;
+  font-family: "proxima-nova",sans-serif;
+  font-size: 17px;
+  padding: 10px;
+}
+.debug-bar .action {
+  cursor: pointer;
+}
+.debug-bar h3.error {
+  background-color: #c8513d !important;
+  display: none;
+}
+.debug-bar h3.success {
+  background-color: #1e85c2 !important;
+  display: none;
+}
+.debug-bar .action:hover {
+  background-color: #ccc;
+}
+
+/*# sourceMappingURL=main.css.map */
+					</pre></code>
+				</section>
+
+				<section>
+					<h2>Hoe kunnen we dit oplossen?</h2>
+					<h3 class="fragment">Tot voor kort</h3>
+					<p class="fragment">Tough luck -> no solutions</p>
+					<div class="fragment">
+						<h3 class="">Oplossing!</h3>
+						<p class="">Sass source mapping</p>
+					</div>
+						
+				</section>
+		
+				<section>
+					<h2>Sass source mapping?!</h2>
+					<p class="fragment">
+						Een map bestand waar de relative source instaat van elke css element in uw sass documenten.
+					</p>
+					<p class="fragment">
+						Bestaat ook voor Less, Stylus, Javascript concatinated code, ...
+					</p>
+				</section>
+
+				<section>
+					<h2>Sweet, how can i get this magic!?</h2>
+					<p class="fragment">Redelijk simpel.... minstens versie 3.3.0 van Sass nodig</p>	
+					<div class="fragment">
+						<pre class=""><code  data-trim>
+	                    	$ sudo gem install sass --pre --verbose
+	                	</code></pre>
+	                	<p>--pre staat voor pre-release versie</p>
+					</div>	
+				</section>
+
+				<section>
+					<h2>Enable in Grunt</h2>
+					<p>Default Gruntfile.js Sass/Watch bestand</p>
+					<pre class=""><code  data-trim>
+sass: {
+  dist: {
+   options: {
+   style: 'expanded'
+  }, 
+ files: {
+  'public/css/main.css': 'src/sass/main.scss'
+  }
+ }
+}
+					</code></pre>
+					<div class="fragment">
+						<p>Gruntfile.js met Source mapping</p>
+						<pre class=""><code  data-trim>
+sass: {
+  dist: {
+   options: {
+   style: 'expanded',
+   //           vv---- enable source mapping 
+   sourcemap: 'true'  
+  }, 
+ files: {
+  'public/css/main.css': 'src/sass/main.scss'
+  }
+ }
+}
+					</code></pre>
+					</div>								
+				</section>
+
+				<section>
+					<h2>Enable in Chrome</h2>
+					<div class="fragment">
+						<p>Open Chrome developers tool<br>Open de settings</p>
+						<img src="img/cssmapping.jpg" height="427" width="1024" alt="">
+					</div>
+				</section>
+
+				<section>
+					<h1>Thats it!</h1>
+				</section>
+
+				<section>
+					<h2>Resultaat:</h2>
+					<img src="img/Screenshot-2013-10-31-14.52.14.png" height="676" width="886" alt="">
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
